@@ -4,6 +4,7 @@ import string
 from Logic.Files.Classes.Cards import Cards
 from Logic.Files.Classes.Characters import Characters
 from Logic.Files.Classes.Locations import Locations
+from Logic.Files.Classes.PlayerThumbnails import PlayerThumbnails
 from Logic.Files.Classes.Skins import Skins
 from Logic.Files.Classes.Pins import Pins
 from Logic.Client import DevicesManager
@@ -21,7 +22,7 @@ class Players:
 
     trophies = 10000
     highestTrophies = 10000
-    experience = 10000
+    experience = 999999
     level = 500
     trophy_road_tier = 105
     coins = 9999999
@@ -45,6 +46,7 @@ class Players:
     allBrawlersUnlock = Cards.getBrawlersUnlockID()
     allStarpowers = Cards.getStarpowersID()
     allPins = Pins.getPinsID()
+    allThumbnailsReward = PlayerThumbnails.getThumbnailsID()
 
     alliance_id = 0
 

@@ -138,10 +138,15 @@ class LogicDailyData:
         self.writeVint(0)
 
         self.writeBoolean(True)
-        self.writeVint(len(self.player.allPins))  # Vanity Count
+        self.writeVint(len(self.player.allPins) + len(self.player.allThumbnailsReward))  # Vanity Count
         for i in self.player.allPins:
             self.writeDataReference(52, i)
             self.writeVint(0)
+
+        for i in self.player.allThumbnailsReward:
+            self.writeDataReference(28, i)
+            self.writeVint(0)
+
 
         self.writeBoolean(False)
 
