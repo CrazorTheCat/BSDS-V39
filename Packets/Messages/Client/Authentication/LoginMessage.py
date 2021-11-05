@@ -1,3 +1,5 @@
+import time
+
 from Logic.Client.ClientsManager import ClientsManager
 from Logic.Client.PlayerManager import Players
 from Database.DatabaseManager import DatabaseManager
@@ -72,5 +74,6 @@ class LoginMessage(Reader):
                 LoginOkMessage(self.client, self.player).send(self.player.LowID, 2)
                 OwnHomeDataMessage(self.client, self.player).send(self.player.LowID)
                 MyAllianceMessage(self.client, self.player).send(self.player.LowID)
+
             else:
                 print(f"Not supported version Detected: {self.player.device.major}.{self.player.device.build}.{self.player.device.minor}")

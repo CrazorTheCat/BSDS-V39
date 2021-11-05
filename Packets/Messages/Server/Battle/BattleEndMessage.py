@@ -1,145 +1,87 @@
 from Logic.Data.DataManager import Writer
 
 class BattleEndMessage(Writer):
-    def __init__(self, client, player):
+    def __init__(self, client, player, playersList, info):
         super().__init__(client)
         self.id = 23456
         self.client = client
         self.player = player
+        self.allPlayers = playersList
+        self.info = info
 
     def encode(self):
-        self.writeInt(0)
-        self.writeInt(0)
-        self.writeInt(0)
-        self.writeInt(0)
-        self.writeVint(1)  # Battle End Game Mode
-        self.writeVint(0)  # Result (Victory/Defeat/Draw/Rank Score)
-        self.writeVint(20)  # Tokens Gained
-        self.writeVint(7)  # Trophies Result
-        self.writeVint(0)  # Power Play Points Gained
-        self.writeVint(100)  # Doubled Tokens
-        self.writeVint(50)  # Double Token Event
-        self.writeVint(100)  # Token Doubler Remaining
-        self.writeVint(0)  # Special Events Level Passed
-        self.writeVint(0)  # Epic Win Power Play Points Gained
-        self.writeVint(0)  # Championship Level Reached
-
-        # Championship Rewards Array
-        self.writeBoolean(False)  # Championship Rewards is Enabled
-        # Championship Rewards Array End
-
-        self.writeVint(0)  # Championship Losses Left
-        self.writeVint(0)  # Championship Maximun Losses
-        self.writeBoolean(False)  # Championship Extra Losses
-        self.writeVint(200)  # Coin Shower Event
-        self.writeVint(0)  # Underdog Trophies
-        self.writeVint(8)  # Takedown Trophies
-        self.writeVint(0)  # Defeat Trophies´
+        self.writeLong(0, 1)
+        self.writeLong(0, 1)
+        self.writeVint(1) # Battle End Game Mode
+        self.writeVint(0) # Result (Victory/Defeat/Draw/Rank Score)
+        self.writeVint(0) # Tokens Gained
+        self.writeVint(1250) # Trophies Result
+        self.writeVint(0) # Power Play Points Gained
+        self.writeVint(0) # Doubled Tokens
+        self.writeVint(0) # Double Token Event
+        self.writeVint(0) # Token Doubler Remaining
+        self.writeVint(0) # Special Events Level Passed
+        self.writeVint(0) # Epic Win Power Play Points Gained
+        self.writeVint(0) # Championship Level Reached
+        self.writeBoolean(False)
         self.writeVint(0)
-        self.writeByte(11)
-        self.writeVint(-64)  # Championship Challenge Type
-        self.writeBoolean(False)  # Championship Cleared State
-
-        # Players Array
-        self.writeVint(3)  # Battle End Screen Players Count
-        self.writeByte(0)
-        self.writeDataReference(16, 53)  # Player Brawler
-        self.writeDataReference(29, 0)  # Player Skin
-        self.writeVint(1250)  # Brawler Trophies
-        self.writeVint(1250)  # Player Power Play Points
-        self.writeVint(10)  # Brawler Power Level
-        self.writeVint(1)  # Brawler Power League Rank
-        # Player HighID and LowID Array
-        self.writeBoolean(True)  # Player HighID and LowID Array
-        self.writeLong(self.player.HighID, self.player.LowID)  # Player ID
-        # Player HighID and LowID Array End
-        self.writeString(self.player.Name)  # Player Name
-        self.writeVint(100)  # Player Experience Level
-        self.writeVint(28000000 + self.player.thumbnails)  # Player Profile Icon
-        self.writeVint(43000000 + self.player.nameColor)  # Player Name Color
-        self.writeVint(46000000)  # Player Color Gradient if Brawl Pass is Purchased
-        # Unknown Array
+        self.writeVint(0)
         self.writeBoolean(False)
-        # Unknown Array End
-        # Players Array End
-
-        self.writeByte(0)
-        self.writeDataReference(16, 4)  # Player Brawler
-        self.writeVint(0)  # Player Skin
-        self.writeVint(0)  # Brawler Trophies
-        self.writeVint(0)  # Player Power Play Points
-        self.writeVint(1)  # Brawler Power Level
-        self.writeVint(1)  # Brawler Power League Rank
-        # Player HighID and LowID Array
-        self.writeBoolean(False)  # Player HighID and LowID Array
-        # Player HighID and LowID Array End
-        self.writeString("1")  # Player Name
-        self.writeVint(100)  # Player Experience Level
-        self.writeVint(28000000)  # Player Profile Icon
-        self.writeVint(43000000)  # Player Name Color
-        self.writeVint(46000000)  # Player Color Gradient if Brawl Pass is Purchased
-        # Unknown Array
+        self.writeVint(0)
+        self.writeVint(0)
+        self.writeVint(0)
+        self.writeVint(0)
+        self.writeVint(0)
+        self.writeByte(16)
+        self.writeVint(-1)
         self.writeBoolean(False)
-        # Unknown Array End
 
-        self.writeByte(0)
-        self.writeDataReference(16, 51)  # Player Brawler
-        self.writeVint(0)  # Player Skin
-        self.writeVint(1250)  # Brawler Trophies
-        self.writeVint(1250)  # Player Power Play Points
-        self.writeVint(10)  # Brawler Power Level
-        self.writeVint(1)  # Brawler Power League Rank
-        # Player HighID and LowID Array
-        self.writeBoolean(False)  # Player HighID and LowID Array
-        # Player HighID and LowID Array End
-        self.writeString("2")  # Player Name
-        self.writeVint(100)  # Player Experience Level
-        self.writeVint(28000000)  # Player Profile Icon
-        self.writeVint(43000000)  # Player Name Color
-        self.writeVint(46000000)  # Player Color Gradient if Brawl Pass is Purchased
-        # Unknown Array
-        self.writeBoolean(False)
-        # Unknown Array End
-        # Players Array End
+        self.writeVint(len(self.allPlayers))  # Players
 
-        # Experience Array
-        self.writeVint(2)  # Experience Gained Count
-        self.writeVint(0)  # Normal Experience ID
-        self.writeVint(8)  # Normal Experience Gained
-        self.writeVint(8)  # Star Player Experience ID
-        self.writeVint(10)  # Star Player Experience Gained
-        # Experience Array End
+        for index,playerEntry in self.allPlayers.items():
+            if playerEntry["IsPlayer"] == True:
+                self.writeByte(1)
+            elif playerEntry["Unknown"] == 1:
+                self.writeByte(4)
+            else:
+                self.writeByte(0)
+            self.writeDataReference(playerEntry["BrawlerID"][0], playerEntry["BrawlerID"][1])  # BrawlerID
+            self.writeDataReference(playerEntry["SkinID"][0], playerEntry["SkinID"][1])  # SkinID
+            self.writeVint(1250) # Trophies
+            self.writeVint(0)
+            self.writeVint(10) # PowerLevel
+            self.writeVint(0)
+            self.writeBoolean(playerEntry["IsPlayer"])
+            if playerEntry["IsPlayer"] == True:
+                self.writeLong(self.player.HighID, self.player.LowID)
+            self.writeString(playerEntry["Name"])  # PlayerName
+            self.writeVint(100)
+            self.writeVint(28000000 + self.player.thumbnails)  # PlayerThumbnail
+            self.writeVint(43000000 + self.player.nameColor)  # NameColor
+            self.writeVint(-1)
 
-        # Rank Up and Level Up Bonus Array
-        hacc = [33, 532]
-        self.writeVint(len(hacc))  # Count
-        for x in range(len(hacc)):
-            self.writeDataReference(39, hacc[x])  # Milestone Row
-        # Rank Up and Level Up Bonus Array End
+        self.writeVint(0)
 
-        # Milestone Progress Array
-        self.writeVint(2)  # Count
-        self.writeVint(1)  # Ranks Milestone ID
-        self.writeVint(1246)  # Brawler Trophies
-        self.writeVint(1246)  # Brawler Trophies for Rank
-        self.writeVint(5)  # Experience Level Milestone ID
-        self.writeVint(1262452)  # Player Experience
-        self.writeVint(1262452)  # Player Experience for Level
-        # Milestone Progress Array End
+        self.writeVint(0)  # XpEntry
 
-        self.writeDataReference(28, 0)  # Player Profile Icon
+        self.writeVint(0)
 
-        # Play Again Status Array
-        self.writeBoolean(False)  # Play Again is Enabled
+        self.writeVint(2)  # LogicMilestoneProgress
+        self.writeVint(1)
+        self.writeVint(1250)
+        self.writeVint(1250)
+        self.writeVint(5)
+        self.writeVint(9999999)
+        self.writeVint(9999999)
 
-        # Quests Array
-        self.writeBoolean(False)  # Quests Boolean
+        self.writeDataReference(28, self.player.thumbnails)
+
+        self.writeBoolean(False)  # PlayAgainStatus
+
+        self.writeBoolean(False)  # LogicQuests
 
         self.writeVint(0)
         self.writeVint(0)
-
-        # Power League Array
-        self.writeBoolean(False)  # Power League is Enabled
-
-        self.writeVint(0)
-        self.writeBoolean(False)
+        self.writeBoolean(False)  # LogicRankedMatchRoundState
+        self.writeVint(-1)
+        self.writeBoolean(False)  # ChronosTextEntry

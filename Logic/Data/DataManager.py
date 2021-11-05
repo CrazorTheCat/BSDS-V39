@@ -132,7 +132,7 @@ class Writer:
     def writeBytes(self, data):
         self.buffer += data
 
-    def writeDataReference(self, x, y):
+    def writeDataReference(self, x, y = 0):
         if x == 0:
             self.writeVint(0)
         else:
@@ -292,6 +292,15 @@ class Reader(BufferedReader):
     def readDataReferenceDouble(self):
         high = self.readVint()
         if high == 0:
+            return 0
+        low = self.readVint()
+        return [high, low]
+
+    def readDataReferenceDouble(self, retList = True):
+        high = self.readVint()
+        if retList == True and high == 0:
+            return [0, 0]
+        elif high == 0:
             return 0
         low = self.readVint()
         return [high, low]
