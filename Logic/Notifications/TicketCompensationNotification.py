@@ -8,3 +8,8 @@ class TicketCompensationNotification:
         BaseNotification.decode(self)
         self.readVint()
         self.readVint()
+
+    def encode(self: Writer, info):
+        BaseNotification.encode(self, info)
+        self.writeVint(info[1]['Tickets'])
+        self.writeVint(info[1]['Gems'])

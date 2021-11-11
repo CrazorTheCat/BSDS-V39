@@ -16,12 +16,12 @@ class PlayerDisplayData:
         self.readVint("NameColor")
         self.readVint()
 
-    def encode(self: Writer):
-        self.writeString(self.player.Name)
+    def encode(self: Writer, info):
+        self.writeString(info[1]['Sender']['Name'])
         self.writeVint(100)
-        self.writeVint(0)
-        self.writeVint(0)
-        self.writeVint(-64)
+        self.writeVint(28000000 + info[1]['Sender']['Thumbnail'])
+        self.writeVint(43000000 + info[1]['Sender']['NameColor'])
+        self.writeVint(-1)
 
     def getNameColor(self, globalId):
         LogicDataTables.getDataById(globalId)

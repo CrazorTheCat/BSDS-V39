@@ -1,5 +1,7 @@
 from Logic.Notifications.BandNotification import BandNotification
 from Logic.Notifications.BaseNotification import BaseNotification
+from Logic.Notifications.BoxRewardNotification import BoxRewardNotification
+from Logic.Notifications.ChallengeRewardNotification import ChallengeRewardNotification
 from Logic.Notifications.FreeTextNotification import FreeTextNotification
 from Logic.Notifications.ProLeagueSeasonEndNotification import ProLeagueSeasonEndNotification
 from Logic.Notifications.PromoPopupNotification import PromoPopupNotification
@@ -8,17 +10,17 @@ from Logic.Notifications.RankedSeasonEndNotification import RankedSeasonEndNotif
 from Logic.Notifications.SkinRewardNotification import SkinRewardNotification
 from Logic.Notifications.StarPointsNotification import StarPointsNotification
 from Logic.Notifications.TicketCompensationNotification import TicketCompensationNotification
-from Logic.Notifications.UnknownNotification import UnknownNotification
 from Logic.Notifications.VanityItemRewardNotification import VanityItemRewardNotification
 
 notificationId = {
     2: 'DonateNotification',
-    63: UnknownNotification,
-    64: 'BoxRewardNotification',
+    63: ChallengeRewardNotification,
+    64: BoxRewardNotification,
     66: 'FloaterTextNotification',
     67: RankedMidSeasonRewardNotification,
     68: RankedSeasonEndNotification,
     69: 'BrawlPassAutoCollectSeasonNotification',
+    70: 'ChallengeRewardNotification',
     71: 'BrawlPassPointRewardNotification',
     72: VanityItemRewardNotification,
     73: 'BrawlPassRewardNotification',
@@ -47,19 +49,20 @@ notificationId = {
 class NotificationFactory:
     def decode(self, notificationID):
         if notificationID not in notificationId:
-            BaseNotification.decode(self)
             raise NotImplementedError(f"Notification with id {notificationID} is not implemented.")
         elif type(notificationId[notificationID]) != str:
             notificationId[notificationID].decode(self)
         else:
             raise NotImplementedError(f"{notificationId[notificationID]} is not implemented.")
 
-    def encode(self, notificationID):
+    def encode(self, info):
+        notificationID = info[1]['ID']
         if notificationID not in notificationId:
-            BaseNotification.encode(self)
+            BaseNotification.encode(self, info)
             raise NotImplementedError(f"Notification with id {notificationID} is not implemented.")
         elif type(notificationId[notificationID]) != str:
-            notificationId[notificationID].encode(self)
+            self.writeVint(notificationID)
+            notificationId[notificationID].encode(self, info)
         else:
             raise NotImplementedError(f"{notificationId[notificationID]} is not implemented.")
 

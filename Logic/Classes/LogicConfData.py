@@ -92,7 +92,7 @@ class LogicConfData:
 
         self.writeVint(0)  # Release Entry
 
-        self.writeVint(13)  # IntValueEntry
+        self.writeVint(18)  # IntValueEntry
 
         self.writeLong(10008, 501)
         self.writeLong(65, 2)
@@ -101,24 +101,34 @@ class LogicConfData:
         self.writeLong(66, 1)
         self.writeLong(61, 36270) # SupportDisabled State | if 36218 < state its true
         self.writeLong(47, 41381)
-        self.writeLong(29, 7) # Skin Group Active For Campaign
+        self.writeLong(29, 10) # Skin Group Active For Campaign
         self.writeLong(48, 41381)
         self.writeLong(50, 0) # Coming up quests placeholder
         self.writeLong(1100, 500)
         self.writeLong(1003, 1)
         self.writeLong(36, 0)
+        self.writeLong(14, 0) # Double Token Event
+        self.writeLong(79, 149999)
+        self.writeLong(80, 160000)
+        self.writeLong(28, 4)
+        self.writeLong(74, 1)
 
-        self.writeVint(2)  # Timed Int Value Entry
+        self.writeVint(3)  # Timed Int Value Entry
 
         self.writeVint(14)
         self.writeVint(1)
-        self.writeVint(480560)
-        self.writeVint(739760)
+        self.writeVint(0)
+        self.writeVint(739760) # Time left
 
         self.writeVint(29)
         self.writeVint(7)
         self.writeVint(0)
-        self.writeVint(746960)
+        self.writeVint(746960) # Time left
+
+        self.writeVint(29)
+        self.writeVint(10)
+        self.writeVint(0)
+        self.writeVint(1330340) # Time left
 
         self.writeVint(0)  # Custom Event
 

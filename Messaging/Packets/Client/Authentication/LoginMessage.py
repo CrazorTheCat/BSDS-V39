@@ -4,9 +4,9 @@ from Logic.Client.ClientsManager import ClientsManager
 from Logic.Client.PlayerManager import Players
 from Database.DatabaseManager import DatabaseManager
 
-from Packets.Messages.Server.Authentication.LoginOkMessage import LoginOkMessage
-from Packets.Messages.Server.Home.OwnHomeDataMessage import OwnHomeDataMessage
-from Packets.Messages.Server.Alliance.MyAllianceMessage import MyAllianceMessage
+from Messaging.Packets.Server.Authentication.LoginOkMessage import LoginOkMessage
+from Messaging.Packets.Server.Home.OwnHomeDataMessage import OwnHomeDataMessage
+from Messaging.Packets.Server.Alliance.MyAllianceMessage import MyAllianceMessage
 
 from Logic.Data.DataManager import Reader
 

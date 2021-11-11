@@ -1,4 +1,4 @@
-from Packets.LogicCommandManager import commandIdentifiers
+from Messaging.LogicCommandManager import commandIdentifiers
 
 from Logic.Data.DataManager import Writer
 from Logic.Data.DataManager import Reader

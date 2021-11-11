@@ -1,15 +1,16 @@
-from Packets.Commands.Client.LogicClearESportsHubNotificationCommand import LogicClearESportsHubNotificationCommand
-from Packets.Commands.Client.LogicClearShopTickersCommand import LogicClearShopTickersCommand
-from Packets.Commands.Client.LogicEnableSkinRandomizerCommand import LogicEnableSkinRandomizerCommand
-from Packets.Commands.Client.LogicGatchaCommand import LogicGatchaCommand
-from Packets.Commands.Client.LogicHelpOpenedCommand import LogicHelpOpenedCommand
-from Packets.Commands.Client.LogicPurchaseDoubleCoinsCommand import LogicPurchaseDoubleCoinsCommand
-from Packets.Commands.Client.LogicPurchaseHeroLvlUpMaterialCommand import LogicPurchaseHeroLvlUpMaterialCommand
-from Packets.Commands.Client.LogicQuestsSeenCommand import LogicQuestsSeenCommand
-from Packets.Commands.Client.LogicSelectCharacterCommand import LogicSelectCharacterCommand
-from Packets.Commands.Client.LogicSelectEmoteCommand import LogicSelectEmoteCommand
-from Packets.Commands.Client.LogicSelectSkinCommand import LogicSelectSkinCommand
-from Packets.Commands.Client.LogicSelectStarPowerCommand import LogicSelectStarPowerCommand
+from Messaging.Commands.Client.LogicClearESportsHubNotificationCommand import LogicClearESportsHubNotificationCommand
+from Messaging.Commands.Client.LogicClearShopTickersCommand import LogicClearShopTickersCommand
+from Messaging.Commands.Client.LogicEnableSkinRandomizerCommand import LogicEnableSkinRandomizerCommand
+from Messaging.Commands.Client.LogicGatchaCommand import LogicGatchaCommand
+from Messaging.Commands.Client.LogicHelpOpenedCommand import LogicHelpOpenedCommand
+from Messaging.Commands.Client.LogicHeroSeenCommand import LogicHeroSeenCommand
+from Messaging.Commands.Client.LogicPurchaseDoubleCoinsCommand import LogicPurchaseDoubleCoinsCommand
+from Messaging.Commands.Client.LogicPurchaseHeroLvlUpMaterialCommand import LogicPurchaseHeroLvlUpMaterialCommand
+from Messaging.Commands.Client.LogicQuestsSeenCommand import LogicQuestsSeenCommand
+from Messaging.Commands.Client.LogicSelectCharacterCommand import LogicSelectCharacterCommand
+from Messaging.Commands.Client.LogicSelectEmoteCommand import LogicSelectEmoteCommand
+from Messaging.Commands.Client.LogicSelectSkinCommand import LogicSelectSkinCommand
+from Messaging.Commands.Client.LogicSelectStarPowerCommand import LogicSelectStarPowerCommand
 
 commandIdentifiers = {
     500: LogicGatchaCommand,
@@ -29,7 +30,7 @@ commandIdentifiers = {
     519: 'LogicPurchaseOfferCommand',
     520: 'LogicLevelUpCommand',
     521: LogicPurchaseHeroLvlUpMaterialCommand,
-    522: 'LogicHeroSeenCommand',
+    522: LogicHeroSeenCommand,
     523: 'LogicClaimAdRewardCommand',
     524: 'LogicVideoStartedCommand',
     525: LogicSelectCharacterCommand,

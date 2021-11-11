@@ -10,3 +10,9 @@ class LogicRewardConfig:
             LogicCondition.decode(self)
         if self.readBoolean() == True:
             LogicGemOffer.decode(self)
+
+    def encode(self: Writer, info): # TODO
+        if self.writeBoolean() == True:
+            LogicCondition.decode(self)
+        if self.readBoolean() == True:
+            LogicGemOffer.decode(self)

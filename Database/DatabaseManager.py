@@ -54,6 +54,7 @@ class DatabaseManager():
             self.player.skinID = self.players['skinID']
             self.player.selectedSkin = self.players['selectedSkin']
             self.player.brawlerState = self.players['brawlerState']
+            self.player.brawlersTrophies = self.players['brawlersTrophies']
             self.player.selectedRandomSkin = self.players['selectedRandomSkin']
             self.player.starpowerID = self.players['starpowerID']
             self.player.thumbnails = self.players['playericon']

@@ -1,7 +1,7 @@
 from Logic.Data.DataManager import Writer
 from Logic.Data.DataManager import Reader
 
-from Packets.Messages.Server.Battle.BattleEndMessage import BattleEndMessage
+from Messaging.Packets.Server.Battle.BattleEndMessage import BattleEndMessage
  
 class AskForBattleEndMessage(Reader):
     def __init__(self, client, player, header_bytes):

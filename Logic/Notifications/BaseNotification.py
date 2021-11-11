@@ -9,9 +9,9 @@ class BaseNotification:
         self.readInt()
         self.readString()
 
-    def encode(self: Writer):
-        self.writeInt(0)
-        self.writeVint(0)
-        self.writeInt(0)
-        self.writeString()
+    def encode(self: Writer, info):
+        self.writeInt(int(info[0]))
+        self.writeBoolean(info[1]['ShowAtLaunch'] != True)
+        self.writeInt(info[1]['Timer'])
+        self.writeString(info[1]['Text'])
 

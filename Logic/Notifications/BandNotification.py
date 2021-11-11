@@ -9,6 +9,6 @@ class BandNotification:
         BaseNotification.decode(self)
         PlayerDisplayData.decode(self)
 
-    def encode(self: Writer):
-        BaseNotification.encode(self)
-        PlayerDisplayData.encode(self)
+    def encode(self: Writer, info):
+        BaseNotification.encode(self, info)
+        PlayerDisplayData.encode(self, info)

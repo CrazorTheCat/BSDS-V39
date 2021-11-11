@@ -2,6 +2,8 @@ from Logic.Data.DataManager import Writer
 from Logic.Data.DataManager import Reader
 from Logic.Classes.LogicConfData import LogicConfData
 from Logic.Classes.LogicDailyData import LogicDailyData
+from Logic.Notifications.NotificationFactory import NotificationFactory
+from Logic.Settings.Configuration import Configuration
 
 
 class LogicClientHome:
@@ -12,7 +14,11 @@ class LogicClientHome:
         LogicDailyData.encode(self)
         LogicConfData.encode(self)
         self.writeLong(self.player.HighID, self.player.LowID)  # PlayerID
-        self.writeVint(0) # Notification Factory
+
+        self.writeVint(len(Configuration.Inbox)) # Notification Factory
+        for notifInfo in Configuration.Inbox:
+            NotificationFactory.encode(self, (Configuration.Inbox.index(notifInfo), notifInfo))
+
         self.writeVint(-64)  # VideoAdStarted
         self.writeBoolean(False)
         self.writeVint(0)  # GatchaDrop

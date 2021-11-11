@@ -1,11 +1,11 @@
-from Packets.Messages.Client.Authentication.LoginMessage import LoginMessage
-from Packets.Messages.Client.Devices.AnalyticEventMessage import AnalyticEventMessage
-from Packets.Messages.Client.Game.EndClientTurnMessage import EndClientTurnMessage
-from Packets.Messages.Client.Home.AskForBattleEndMessage import AskForBattleEndMessage
-from Packets.Messages.Client.Home.ChangeAvatarNameMessage import ChangeAvatarNameMessage
-from Packets.Messages.Client.Home.GetPlayerProfileMessage import GetPlayerProfileMessage
-from Packets.Messages.Client.Home.GoHomeFromOfflinePractiseMessage import GoHomeFromOfflinePractiseMessage
-from Packets.Messages.Client.Socket.KeepAliveMessage import KeepAliveMessage
+from Messaging.Packets.Client.Authentication.LoginMessage import LoginMessage
+from Messaging.Packets.Client.Devices.AnalyticEventMessage import AnalyticEventMessage
+from Messaging.Packets.Client.Game.EndClientTurnMessage import EndClientTurnMessage
+from Messaging.Packets.Client.Home.AskForBattleEndMessage import AskForBattleEndMessage
+from Messaging.Packets.Client.Home.ChangeAvatarNameMessage import ChangeAvatarNameMessage
+from Messaging.Packets.Client.Home.GetPlayerProfileMessage import GetPlayerProfileMessage
+from Messaging.Packets.Client.Home.GoHomeFromOfflinePractiseMessage import GoHomeFromOfflinePractiseMessage
+from Messaging.Packets.Client.Socket.KeepAliveMessage import KeepAliveMessage
 
 identifiers = {
     10101: LoginMessage,

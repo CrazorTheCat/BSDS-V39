@@ -16,8 +16,8 @@ class PromoPopupNotification:
         self.writeVint(0)
 
 
-    def encode(self: Writer):
-        BaseNotification.encode(self)
+    def encode(self: Writer, info):
+        BaseNotification.encode(self, info)
         ChronosTextEntry.encode(self)
         ChronosTextEntry.encode(self)
         ChronosTextEntry.encode(self)

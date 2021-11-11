@@ -44,9 +44,10 @@ class LogicDailyData:
             self.writeDataReference(29, 18)  # SkinID
 
         # Unlocked Skin
-        self.writeVint(len(self.player.allSkins))
-        for i in self.player.allSkins:
-            self.writeDataReference(29, i)
+        # self.writeVint(len(self.player.allSkins))
+        self.writeVint(0)
+        # for i in self.player.allSkins:
+        #     self.writeDataReference(29, i)
 
         # Unlocked Skin Purchase Option
         self.writeVint(1)
@@ -116,7 +117,10 @@ class LogicDailyData:
         self.writeVint(9)  # Brawlpass
         for i in range(9):
             self.writeVint(i)
-            self.writeVint(34500)
+            if i != 0:
+                self.writeVint(34500)
+            else:
+                self.writeVint(29000)
             self.writeBoolean(True)
             self.writeVint(0)
 
@@ -134,18 +138,24 @@ class LogicDailyData:
 
         self.writeVint(0)
 
-        self.writeBoolean(True)
+        self.writeBoolean(True) # Quest
         self.writeVint(0)
 
         self.writeBoolean(True)
         self.writeVint(len(self.player.allPins) + len(self.player.allThumbnailsReward))  # Vanity Count
         for i in self.player.allPins:
             self.writeDataReference(52, i)
-            self.writeVint(0)
+            self.writeVint(1)
+            for i in range(1):
+                self.writeVint(1)
+                self.writeVint(1)
 
         for i in self.player.allThumbnailsReward:
             self.writeDataReference(28, i)
-            self.writeVint(0)
+            self.writeVint(1)
+            for i in range(1):
+                self.writeVint(1)
+                self.writeVint(1)
 
 
         self.writeBoolean(False)

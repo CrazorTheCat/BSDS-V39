@@ -28,6 +28,7 @@ class LogicClientAvatar:
             self.writeDataReference(23, i)
             self.writeVint(1)
 
+
         self.writeDataReference(5, 1)
         self.writeVint(1)
 

@@ -1,6 +1,5 @@
 import time
 import random
-import threading
 
 class Utils:
     def GetTime(self):
